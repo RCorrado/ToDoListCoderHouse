@@ -1,0 +1,114 @@
+﻿@import "_mixins.scss";
+@import "_vars.scss";
+
+html {
+    background-color: rgba($light-blue,.4);
+
+    .w-2 {
+        max-width: 2%;
+    }
+
+    body {
+        @include lg {
+            margin: 30px !important;
+            border-radius: 5px;
+        }
+
+        .container-st {
+            border: .5px solid rgba($light-blue, .7);
+            margin: 5px;
+            box-shadow: 0px 0px 7.5px rgba($black, .5);
+
+            #title {
+                .display-1 {
+                    font-size: 3.5rem;
+                    animation-name: toggle;
+                    animation-delay: .5s;
+                    animation-duration: 2.5s;
+                    animation-iteration-count: 3;
+                    animation-fill-mode: forwards;
+                    animation-timing-function: ease;
+                }
+
+                .h2 {
+                    animation-name: fade;
+                    animation-duration: 1s;
+                    animation-fill-mode: forwards;
+                    animation-timing-function: ease;
+                    font-size: 1.25rem;
+                    opacity: 0;
+                }
+            }
+
+            #data {
+                max-width: 95%;
+
+                .row {
+                    max-width: 99%;
+                    margin: 0 auto;
+                }
+
+                textarea {
+                    resize: none;
+
+                    @include sm {
+                        height: 30vh;
+                    }
+                }
+
+                input {
+                    height: 100% !important;
+                }
+
+                button {
+                    margin: .5rem auto;
+                    transition: padding .5s ease, margin .5s ease;
+
+                    &:hover {
+                        @include lg {
+                            margin: .75px auto;
+                        }
+                    }
+
+                    &:disabled {
+                        padding: .375rem .75rem;
+
+                        @include lg {
+                            margin: .5rem auto;
+                        }
+                    }
+                }
+            }
+
+            .table {
+                .thead-light {
+                    th{
+                        &:hover{
+                            cursor:pointer;
+                        }
+
+                        &.selected {
+                            background-color: #353535;
+                        }
+                    }
+                }
+            }
+
+
+            hr {
+                border: .5px solid $light-blue;
+            }
+        }
+    }
+}
+
+@keyframes toggle{
+    25% {transform : rotate(-5deg)}
+    50% { transform : rotate(5deg) }
+    100% { transform: rotate(0deg) }
+}
+
+@keyframes fade{
+    from {opacity: 0}
+    to{opacity: 1}
+}

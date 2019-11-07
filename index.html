@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="es" ng-app="toDoList" ng-controller="ListController">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>List your life</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="build/main.css" rel="stylesheet" />
+</head>
+<body class="p-1">
+    <div class="container-st">
+        <section id="title" class="container-fluid p-5 text-center">
+            <h1 class="display-1">List your life</h1>
+            <h2 class="h2">List all your activities day by day!</h2>
+        </section>
+        <hr class="w-2" />
+        <section id="data" class="container mt-5">
+            <div class="row">
+                <input class="p-2 col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-3" type="number" name="TaskCode" id="TaskCode" ng-init="updateCode()" value="{{ codeNew }}" disabled/>
+                <input class="p-2 col-xl-8 offset-xl-1 col-lg-7 offset-lg-1 col-md-12 col-sm-12 mb-3" type="text" name="TaskName" id="TaskName" placeholder="Nombre de la tarea" maxlength="25"/>
+                <textarea class="p-2 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3" name="TaskDesc" id="TaskDesc" placeholder="Descripción de la tarea (Opcional)" wrap="hard" maxlength="350"></textarea>
+            </div>
+            <div class="row mt-3 justify-content-center">
+                <button type="button" id="add" class="btn btn-primary col-xl-2 col-lg-2 col-sm-10 col-10" ng-click="add()">Añadir</button>
+                <button type="button" id="update" class="btn btn-secondary col-xl-2 col-lg-2 col-sm-10 col-10" disabled ng-click="modificar()">Modificar</button>
+                <button type="button" id="delete" class="btn btn-danger col-xl-2 col-lg-2 col-sm-10 col-10" disabled ng-click="borrar()">Borrar</button>
+            </div>
+        </section>
+        <hr class="w-2" />
+        <section class="container mt-5 pb-5">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered justify-content-center">
+                    <thead class="thead-light text-center">
+                        <tr>
+                            <th ng-click="setOrder = 'code'" class="selected">Código</th>
+                            <th ng-click="setOrder = 'name'">Título</th>
+                            <th ng-click="setOrder = 'desc'">Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in list | orderBy : setOrder " ng-click="select(item)">
+                            <td>{{ item.code }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.desc }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="build/main.bundle.js"></script>
+</body>
+</html>
